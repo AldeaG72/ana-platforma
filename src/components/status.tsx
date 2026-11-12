@@ -38,7 +38,7 @@ export function StatusControl({ kind, id, companyId, status }: { kind: "document
           else toast.success(`Status: ${STATUS_LABEL[next]}`);
         });
       }}
-      className={cn("h-8 cursor-pointer rounded-full border px-2.5 text-xs font-medium disabled:opacity-60", SELECT_TONE[status])}
+      className={cn("h-8 w-auto shrink-0 cursor-pointer rounded-full border px-2.5 text-xs font-medium disabled:opacity-60", SELECT_TONE[status])}
     >
       {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
     </select>

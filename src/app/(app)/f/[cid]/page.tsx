@@ -73,7 +73,7 @@ export default async function CompanyDashboard({ params }: { params: Promise<{ c
                     {c.state === "lipsa" ? <Circle className="size-4 text-navy-100" /> : c.state === "nu_e_cazul" ? <MinusCircle className="size-4 text-muted" /> : <CheckCircle2 className="size-4 text-emerald-600" />}
                     <span className={c.state === "lipsa" ? "font-medium text-navy-900" : "text-muted"}>{c.label}</span>
                     <span className="ml-auto text-xs text-muted">
-                      {c.state === "lipsa" ? (c.dueDate ? `până la ${formatDate(c.dueDate)}` : "lipsește") : c.state === "nu_e_cazul" ? "nu e cazul" : c.docCount ? `${c.docCount} fișiere` : "bifat"}
+                      {c.state === "lipsa" ? (c.dueDate ? `până la ${formatDate(c.dueDate)}` : "lipsește") : c.state === "nu_e_cazul" ? "nu e cazul" : c.docCount ? `${c.docCount} ${c.docCount === 1 ? "fișier" : "fișiere"}` : "bifat"}
                     </span>
                   </li>
                 ))}

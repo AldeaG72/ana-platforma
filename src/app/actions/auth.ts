@@ -15,7 +15,12 @@ export async function login(_: ActionState, fd: FormData): Promise<ActionState> 
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return { error: "Email sau parolă incorectă." };
+  if (error) {
+    // deosebim datele greșite de o problemă de conexiune cu serviciul de autentificare
+    const wrong = error.status === 400 || error.code === "invalid_credentials";
+    if (!wrong) console.error("Autentificare eșuată:", error.message);
+    return { error: wrong ? "Email sau parolă incorectă." : "Serviciul de autentificare nu răspunde. Încearcă din nou în câteva momente." };
+  }
   redirect(safeNext(fd.get("next")));
 }
 
